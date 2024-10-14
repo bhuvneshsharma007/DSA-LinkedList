@@ -1,4 +1,4 @@
- class Node {
+class Node {
     constructor(value) {
         this.prev = null
         this.value = value
@@ -7,8 +7,8 @@
 }
 class LinkedList {
     constructor() {
-        this.Head = this.Head
-        this.Tail = Tail
+        this.Head = null
+        this.Tail = null
         this.Size = 0;
     }
     isEmpty(){
@@ -77,18 +77,38 @@ class LinkedList {
         }
         console.log(list);
     }
+    printreverse(){
+        if (this.isEmpty()) {
+            console.log("List is empty nothing to print");
+        }else{
+            let curr = this.Tail
+            let list = ' ';
+            while (curr) {
+                list +=`${curr.value} `
+                curr = curr.prev;
+            }
+            console.log(list);
+        }
+    }
 }
 
 const list = new LinkedList();
 
 console.log(list.isEmpty());
-console.log(list.Size());
+console.log(list.getSize());
 list.prepend(10);
 list.prepend(20);
 list.prepend(30);
 list.prepend(40);
 list.prepend(50);
+// list.removeFromFront()
+// list.removeFromFront()
+// list.removeFromFront()
+// list.removeFromFront()
+// list.removeFromFront()
 
+
+console.log(list. printreverse());
 console.log(list.print());
 
 
