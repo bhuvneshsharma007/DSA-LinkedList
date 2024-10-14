@@ -1,82 +1,95 @@
-class Node {
+ class Node {
     constructor(value) {
+        this.prev = null
         this.value = value
         this.next = null
     }
 }
-class LinkedListStack {
+class LinkedList {
     constructor() {
-        this.Head = null;
-        this.Tail = null
+        this.Head = this.Head
+        this.Tail = Tail
         this.Size = 0;
     }
     isEmpty(){
-        return this.Size===0
+        return this.Size === 0
     }
     getSize(){
         return this.Size
     }
-    enqueue(value){
-        const node = new Node(value)
+    prepend(Value){
+        const node = new Node(Value)
+        if (this.isEmpty()) {
+            this.Head = node;
+            this.Tail = node
+        }else{
+            node.next = this.Head
+            this.Head.prev = node
+            this.Head = node
+        }
+        this.Size++;
+    }
+    append(Value){
+        const node = new Node(Value)
         if (this.isEmpty()) {
             this.Head = node
             this.Tail = node
         }else{
-            node.next = this.Head
-            this.Head =node
+            this.Tail.next = node
+            node.next = null
+            this.Tail = node
         }
-        this.Size++;
+        this.Size++
     }
-    dequeue(){
+    removeFromFront(){
         if (this.isEmpty()) {
+            console.log("list is empty there is nothing to remove");
+        }if (this.Size === 1) {
             this.Head = null
             this.Tail = null
         }else{
-            let curr = this.Head
-            while (curr.next !== this.Tail) {
-                curr = curr.next
-            }
-            curr.next = null
-            this.Tail = curr;
-            this.Size--;
+            this.Head = this.Head.next
         }
+        this.Size--
+    }
+    removeFromEnd(){
+        if (this.isEmpty()) {
+            return null
+        }if (this.Size === 1) {
+            this.Tail = null
+            this.Head = null
+        }else{
+            this.Tail = this.Tail.prev
+            this.Tail.next = null
+        }
+        this.Size--
     }
     print(){
         if (this.isEmpty()) {
-            console.log("List is empty");
+            console.log("List is Empty  nothing to Print");
+            
         }
         let curr = this.Head
-        let list = ' '
+        let list = ' ';
         while (curr) {
             list += `${curr.value} `
-            curr = curr.next
-            
+            curr = curr.next;
         }
-        console.log(list);        
-    }
-    printReverse(){
-        if (this.isEmpty()) {
-            console.log("List is Empty ");
-        }
-        else{
-            let curr = this.Tail
-            let list = ' '
-            while(curr.prev!==null){
-                list += `${curr.value} `;
-                curr = curr.prev;
-            }
-            console.log(list);
-            
-        }
+        console.log(list);
     }
 }
 
-const list = new LinkedListStack()
-list.enqueue(10)
-list.enqueue(20)
-list.enqueue(30)
-list.enqueue(40)
-list.enqueue(50)
+const list = new LinkedList();
+
+console.log(list.isEmpty());
+console.log(list.Size());
+list.prepend(10);
+list.prepend(20);
+list.prepend(30);
+list.prepend(40);
+list.prepend(50);
 
 console.log(list.print());
+
+
 
